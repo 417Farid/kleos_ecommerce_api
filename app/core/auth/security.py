@@ -1,12 +1,16 @@
+import os
 from datetime import datetime, timedelta
 import hashlib
 
 import bcrypt
 from jose import jwt
+from dotenv import load_dotenv
 
 SHA256_BCRYPT_PREFIX = "bcrypt_sha256$"
 
-SECRET_KEY = "supersecretkey"
+load_dotenv()
+
+SECRET_KEY = os.getenv("SECRET_KEY", "change-me-in-env")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60
 
