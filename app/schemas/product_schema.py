@@ -1,3 +1,5 @@
+from typing import Optional
+
 from pydantic import BaseModel, Field
 
 class ProductBase(BaseModel):
@@ -20,3 +22,10 @@ class ProductResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+class ProductUpdate(BaseModel):
+    name: Optional[str] = None
+    category: Optional[str] = None
+    sport: Optional[str] = None
+    price: Optional[float] = None
+    stock: Optional[int] = None

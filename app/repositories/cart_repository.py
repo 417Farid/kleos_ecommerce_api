@@ -44,3 +44,4 @@ def remove_cart_item(db: Session, cart_id: int, product_id: int):
         db.commit()
         return True
     return False
+
