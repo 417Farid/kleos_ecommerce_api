@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from app.core.database import SessionLocal
-from app.services.cart_service import add_to_cart_service, get_cart_service, remove_item_from_cart_service
+from app.services.cart_service import add_to_cart_service, get_cart_service, remove_item_from_cart_service, update_cart_item_service
 from app.core.auth.dependecies import get_current_user
-from app.schemas.cart_schema import CartItemCreate
+from app.schemas.cart_schema import CartItemCreate, CartItemUpdate
 
 router = APIRouter(prefix="/cart", tags=["cart"])
 
@@ -40,3 +40,12 @@ def remove_item_from_cart(
     user = Depends(get_current_user)
 ):
     return remove_item_from_cart_service(db, user.id, product_id)
+
+@router.put("/items/")
+def update_cart_item(
+    data: CartItemUpdate,
+    db: Session = Depends(get_db),
+    user = Depends(get_current_user)
+):
+    cart_item = update_cart_item_service(db, user.id, data)
+    return cart_item

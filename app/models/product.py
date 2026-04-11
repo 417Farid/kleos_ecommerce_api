@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float
+from sqlalchemy import Boolean, Column, DateTime, Integer, String, Float
 from app.core.database import Base
 
 class Product(Base):
@@ -10,3 +10,6 @@ class Product(Base):
     sport = Column(String)
     price = Column(Float)
     stock = Column(Integer)
+
+    is_active = Column(Boolean, default=True)
+    deleted_at = Column(DateTime, nullable=True)
