@@ -35,7 +35,7 @@ def get_products(
     return get_products_filtered_service(db, sport, min_price)
 
 @router.get("/all")
-def get_all_products(db: Session = Depends(get_db)):
+def get_all_products(db: Session = Depends(get_db), user = Depends(get_current_admin)):
     return get_products_service(db)
 
 @router.get("/{product_id}")
